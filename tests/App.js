@@ -6,7 +6,7 @@ import { App } from '../src/App';
 describe('Basic App test', () => {
   it('shallow render', () => {
     const result = shallow(<App />);
-    expect(result.contains(<h1>Hello World!</h1>)).to.equal(true);
+    expect(result.contains(<h1>Hello World! <span>testing</span></h1>)).to.equal(true);
   });
 
   it('full render', () => {
