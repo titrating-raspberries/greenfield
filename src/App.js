@@ -20,28 +20,29 @@ export class App extends Component {
   }
 
   getQuery(zip, start, end) {
-    var dateRange = start + '00-';
+    var dateRange = start + '00-'; //eslint-disable-line
     if (!end) {
-      dateRange = dateRange + start + '00';
+      dateRange = dateRange + start + '00'; //eslint-disable-line
       console.log(dateRange);
     } else {
-      dateRange = dateRange + end + '00';
+      dateRange = dateRange + end + '00'; //eslint-disable-line
       console.log(dateRange);
     }
-    var options = {
+    var options = { //eslint-disable-line
       app_key: Key.eventful,
       location: zip,
       category: 'music',
       page_size: 20,
       date: dateRange,
     };
-    var data = searchEventful(options, function (results) {
+    var data = searchEventful(options, function (results) { //eslint-disable-line
       console.log('date is ', options.date);
       this.setState({ data: results });
       console.log('state data is ', this.state.data);
     }.bind(this));
   }
 
+/*eslint-disable */
 
   render() {
     return (
@@ -55,6 +56,7 @@ export class App extends Component {
       </container>
     );
   }
+/*eslint-enable */
 
 }
 
