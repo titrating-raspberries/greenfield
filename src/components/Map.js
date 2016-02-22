@@ -9,14 +9,14 @@ class Map extends Component {
   componentDidMount() {
     const myLatLng = { lat: -25.363, lng: 131.044 };
 
-    const map = new google.maps.Map(document.getElementById('map'), {
+    const map = new google.maps.Map(document.getElementById('map'), { //eslint-disable-line
       zoom: 4,
       center: myLatLng,
     });
 
-    const marker = new google.maps.Marker({
+    const marker = new google.maps.Marker({ //eslint-disable-line
       position: myLatLng,
-      map: map,
+      map: map, //eslint-disable-line
       title: 'Hello World!',
     });
   }
