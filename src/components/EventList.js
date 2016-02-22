@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Event from 'event';
+import Event from './event';
 
 // takes in [{event},{event},{event}]
 
