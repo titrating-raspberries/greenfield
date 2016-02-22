@@ -10,8 +10,9 @@ class Search extends React.Component {
   }
 
   getInput() {
-    this.props.getQuery(this.refs.zip.value, this.refs.start.value, this.refs.end.value);
+    this.props.getQuery(this.refs.zip.value, this.refs.start.value, this.refs.end.value); //eslint-disable-line
   }
+
   /*eslint-disable */
 
 
