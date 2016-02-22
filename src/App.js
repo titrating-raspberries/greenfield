@@ -4,6 +4,7 @@ import Map from './components/Map';
 import Search from './components/Search';
 import Key from './config/apikeys';
 import searchEventful from './lib/searchEventful';
+import EventList from './components/EventList'
 
 export class App extends Component {
   constructor(props) {
@@ -49,6 +50,8 @@ export class App extends Component {
         <Search getQuery={ this.getQuery.bind(this) } />
         <br/><br/>
         <Map props={ this.state }/>
+        <br/>
+        <EventList />
       </container>
     );
   }
