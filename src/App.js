@@ -4,7 +4,7 @@ import Map from './components/Map';
 import Search from './components/Search';
 import Key from './config/apikeys';
 import searchEventful from './lib/searchEventful';
-import EventList from './components/EventList'
+import EventList from './components/EventList';
 
 export class App extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ export class App extends Component {
   getQuery(zip, start, end) {
     var dateRange = start + '00-';
     if (!end) {
-      dateRange= dateRange + start + '00';
+      dateRange = dateRange + start + '00';
       console.log(dateRange);
     } else {
       dateRange = dateRange + end + '00';
@@ -35,7 +35,7 @@ export class App extends Component {
       page_size: 20,
       date: dateRange,
     };
-    var data = searchEventful(options, function(results) {
+    var data = searchEventful(options, function (results) {
       console.log('date is ', options.date);
       this.setState({ data: results });
       console.log('state data is ', this.state.data);
