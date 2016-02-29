@@ -1,10 +1,7 @@
 var Event = require('./eventModel.js');
 var Q = require('q');
 var key = require('../keys/apikeys.js')
-
 var eventful = require('eventful-node');
-var findEvent = Q.nbind(Event.findOne, Event);
-var createEvent = Q.nbind(Event.create, Event);
 var client = new eventful.Client(key.eventful);
 
 // This function is for optimization to allow auto-refreshing of event listings
@@ -34,29 +31,33 @@ module.exports = {
                   //   lastModified: true,
                   // },
                 var eventList = data.search.events.event;
-                for(var i = 0; i < eventList.length || 0; i++){
-                  if(eventList[i].description) {
-                    eventList[i].description = eventList[i].description.slice(0, 500) + '...';
-                  }
-                  var used = ['title', 'venue_name', 'venue_address', 'city_name', 'region_abbr', 'url', 'latitude', 'longitude', 'description'];
-                  for(var prop in eventList[i]) {
-                    if(used.indexOf(prop) === -1){
-                      delete eventList[i][prop];
+                if(!eventList) {
+                  res.end();
+                } else {
+                  for(var i = 0; i < eventList.length; i++){
+                    if(eventList[i].description) {
+                      eventList[i].description = eventList[i].description.slice(0, 500) + '...';
+                    }
+                    var used = ['title', 'venue_name', 'venue_address', 'city_name', 'region_abbr', 'url', 'latitude', 'longitude', 'description'];
+                    for(var prop in eventList[i]) {
+                      if(used.indexOf(prop) === -1){
+                        delete eventList[i][prop];
+                      }
                     }
                   }
-                }
 
-                Event.create({
-                  dateAndPlace: req.query.date+req.query.where,
-                  eventList: eventList,
-                }, function (err, list){
-                  if (err){
-                    console.log("ERROR: ", err);
-                  } else {
-                    console.log('LIST ADDED');
-                  }
-                res.json(eventList);
-                });
+                  Event.create({
+                    dateAndPlace: req.query.date+req.query.where,
+                    eventList: eventList,
+                  }, function (err, list){
+                    if (err){
+                      console.log("ERROR: ", err);
+                    } else {
+                      console.log('LIST ADDED');
+                    }
+                  res.json(eventList);
+                  });
+                }
               }
             }
         });
