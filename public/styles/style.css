@@ -1,3 +1,5 @@
+@import "react-datepicker.min.css";
+
 html, body {
   height: 100%;
   margin: 0;
@@ -112,4 +114,3 @@ article {
   height: 800px;
   margin: 15px 0 0 0;
 }
-

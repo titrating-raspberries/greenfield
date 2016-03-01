@@ -1,41 +1,48 @@
 /* eslint-disable react/jsx-no-bind */
-import React from 'react';
+import React, { Component } from 'react';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
-class Search extends React.Component {
+class Search extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      date: moment(),
+    };
   }
 
-  changePlace(e) {
-    e.preventDefault();
-    this.props.getQuery(this.refs.where.value, this.refs.when.value);
+  changeDate(newDate) {
+    if(newDate === 1) {
+      newDate = moment(this.state.date).add(1, 'day');
+    } else if (newDate === -1) {
+      newDate = moment(this.state.date).subtract(1, 'day');
+    }
+    this.setState({
+      date: newDate
+    }, this.updateEvents);
   }
 
-  changeDate(e) {
-    e.preventDefault();
-    this.props.getQuery(this.refs.where.value, this.refs.when.value);
+  updateEvents() {
+    let eventfulDate = this.state.date.format('YYYYMMDD00-YYYYMMDD00');
+    this.props.loadEvents(this.refs.where.value, eventfulDate);
   }
 
   render() {
     return (
       <div className="search">
-        <form id="where" onSubmit={e => this.changePlace(e)}>
+        <form id="where" onSubmit={() => this.updateEvents()}>
           <input type="text" ref="where" />
         </form>
         <div id="when">
-          <button value="-1" onClick={e => this.changeDate(e)}>&#9664;</button>
-          <form onSubmit={e => this.changeDate(e)}>
-            <input type="date" ref="when" />
-          </form>
-          <button value="1" onClick={e => this.changeDate(e)}>&#9654;</button>
+          <button onClick={() => this.changeDate(-1)}>&#9664;</button>
+          <DatePicker
+            selected={this.state.date}
+            onChange={newDate => this.changeDate(newDate)} />
+          <button onClick={() => this.changeDate(1)}>&#9654;</button>
         </div>
       </div>
     );
   }
 }
-
-Search.propTypes = {
-  getQuery: React.PropTypes.function,
-};
 
 export default Search;

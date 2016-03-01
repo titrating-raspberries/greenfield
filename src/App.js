@@ -25,24 +25,17 @@ export class App extends Component {
     };
   }
 
-  getQuery(city, start, end) {
-    const formattedStart = start.split('-').join('');
-    let dateRange = formattedStart + '00-'; //eslint-disable-line
-    if (!end) {
-      dateRange = dateRange + formattedStart + '00'; //eslint-disable-line
-    } else {
-      const formattedEnd = end.split('-').join('');
-      dateRange = dateRange + formattedEnd + '00'; //eslint-disable-line
-    }
+  loadEvents(where, when) {
     const options = {
-      where: city,
+      where: where,
       q: 'music',
       page_size: 20,
       sort_order: 'popularity',
-      date: dateRange,
+      date: when,
       within: 10,
       units: 'miles',
     };
+
     $.ajax({
       url: '/api/events/getList',
       type: 'GET',
@@ -78,7 +71,7 @@ export class App extends Component {
         <Banner />
         <div className="app">
           <a name="mainApp"/>
-          <Search getQuery={ this.getQuery.bind(this) } />
+          <Search loadEvents={ this.loadEvents.bind(this) } />
           <br/>
           <br/>
           <div className="col-xs-12">
