@@ -20,9 +20,9 @@ export class App extends Component {
     };
   }
 
-  loadEvents(where, when) {
+  loadEvents(city, when) {
     const options = {
-      where: where,
+      where: city,
       q: 'music',
       page_size: 20,
       sort_order: 'popularity',

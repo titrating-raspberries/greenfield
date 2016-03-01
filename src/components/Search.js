@@ -11,19 +11,22 @@ class Search extends Component {
     };
   }
 
-  changeDate(newDate) {
-    if(newDate === 1) {
+  changeDate(change) {
+    let newDate;
+    if (change === 1) {
       newDate = moment(this.state.date).add(1, 'day');
-    } else if (newDate === -1) {
+    } else if (change === -1) {
       newDate = moment(this.state.date).subtract(1, 'day');
+    } else {
+      newDate = change;
     }
     this.setState({
-      date: newDate
+      date: newDate,
     }, this.updateEvents);
   }
 
   updateEvents() {
-    let eventfulDate = this.state.date.format('YYYYMMDD00-YYYYMMDD00');
+    const eventfulDate = this.state.date.format('YYYYMMDD00-YYYYMMDD00');
     this.props.loadEvents(this.refs.where.value, eventfulDate);
   }
 
@@ -37,12 +40,17 @@ class Search extends Component {
           <button onClick={() => this.changeDate(-1)}>&#9664;</button>
           <DatePicker
             selected={this.state.date}
-            onChange={newDate => this.changeDate(newDate)} />
+            onChange={newDate => this.changeDate(newDate)}
+          />
           <button onClick={() => this.changeDate(1)}>&#9654;</button>
         </div>
       </div>
     );
   }
 }
+
+Search.propTypes = {
+  loadEvents: React.PropTypes.function,
+};
 
 export default Search;

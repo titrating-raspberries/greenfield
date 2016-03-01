@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import mapStyles from '../config/mapStyles'
+import mapStyles from '../config/mapStyles';
 
 class Map extends Component {
   constructor(props) {

@@ -1,4 +1,5 @@
-const mapStyles = [  
+/* eslint-disable */
+const mapStyles = [
    {
       'featureType':'administrative.neighborhood',
       'elementType':'labels.text',
