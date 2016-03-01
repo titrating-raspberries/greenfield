@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import initMap from '../../public/Helpers'
-
+import mapStyles from '../config/mapStyles'
 
 class Map extends Component {
   constructor(props) {
@@ -26,7 +25,8 @@ class Map extends Component {
     return new google.maps.Map(document.getElementById('map'), { //eslint-disable-line
       zoom: 13,
       center: myLatLng,
-      styles: this.props.parentState.mapStyle,
+      mapTypeControl: false,
+      styles: mapStyles,
     });
   }
 
