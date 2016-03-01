@@ -15,7 +15,6 @@ h1 {
 }
 
 img {
-  display: inline-block;
 }
 
 h4 {
@@ -23,7 +22,6 @@ h4 {
 }
 
 h5 {
-  display: inline-block;
   color: white;
 }
 
@@ -45,22 +43,23 @@ h5 {
   margin-top: 1em;
 }
 
+#location{
+  margin-top: -27px;
+}
+
 .dayButton {
   background-color: #222222;
 }
 
 .topSearch .dayButton {
-  display: inline;
 }
 
 .topSearch .daySelector {
-  display: inline !important;
 
 }
 
 .topSearch {
   width: 100%;
-  display: inline-block;
 }
 
 #banner-container {
