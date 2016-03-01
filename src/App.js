@@ -38,7 +38,6 @@ export class App extends Component {
       data: options,
       contentType: 'application/json',
       success: (data) => {
-        console.log("DATA IS---:", data);
         this.setState({ fail: false });
         console.log('call to server successful');
         // console.log(data);

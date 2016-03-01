@@ -12,20 +12,6 @@ class Search extends Component {
     };
   }
 
-  getInput() {
-    const cats = [];
-    const testChecks = (cat) => {
-      if (cat.checked) {
-        cats.push(cat.value);
-      }
-    };
-    testChecks(this.refs.music);
-    testChecks(this.refs.singles);
-    testChecks(this.refs.performing);
-    const catStr = cats.join(',');
-    this.props.getQuery(this.refs.city.value, this.refs.start.value, this.refs.end.value, catStr);
-  }
-
   changeDate(change) {
     let newDate;
     if (change === 1) {
