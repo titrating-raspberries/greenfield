@@ -47,17 +47,19 @@ class Search extends Component {
 
       <div className="search">
         <div className="row topSearch">
-          <div className="col-md-6">
-              <form onSubmit={() => this.updateEvents()}>
-                <input type="text" ref="where" id="where" placeholder="Enter a location"/>
-              </form>
-          </div>
+          <div>
             <button className="dayButton col-md-1" onClick={() => this.changeDate(-1)}>&#9664;</button>
-            <DatePicker className="col-md-2"
+            <DatePicker
               selected={this.state.date} id="when"
               onChange={newDate => this.changeDate(newDate)}
             />
             <button className="col-md-1 dayButton" onClick={() => this.changeDate(1)}>&#9654;</button>
+          </div>
+          <div className="col-md-6 col-md-offset-4" id="location">
+              <form onSubmit={() => this.updateEvents()}>
+                <input type="text" ref="where" id="where" placeholder="Enter a location"/>
+              </form>
+          </div>
         </div>
         <div className="form-group row radio">
           <form action="">
