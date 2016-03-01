@@ -44,27 +44,30 @@ class Search extends Component {
   /*eslint-disable */
   render() {
     return (
+
       <div className="search">
-        <form id="where" onSubmit={() => this.updateEvents()}>
-          <input type="text" ref="where" />
-        </form>
-        <div id="when">
-          <button onClick={() => this.changeDate(-1)}>&#9664;</button>
-          <DatePicker
-            selected={this.state.date}
-            onChange={newDate => this.changeDate(newDate)}
-          />
-          <button onClick={() => this.changeDate(1)}>&#9654;</button>
+        <div className="row topSearch">
+          <div className="col-md-6">
+              <form onSubmit={() => this.updateEvents()}>
+                <input type="text" ref="where" id="where" placeholder="Enter a location"/>
+              </form>
+          </div>
+            <button className="dayButton col-md-1" onClick={() => this.changeDate(-1)}>&#9664;</button>
+            <DatePicker className="col-md-2"
+              selected={this.state.date} id="when"
+              onChange={newDate => this.changeDate(newDate)}
+            />
+            <button className="col-md-1 dayButton" onClick={() => this.changeDate(1)}>&#9654;</button>
         </div>
         <div className="form-group row radio">
           <form action="">
-            <div className="col-md-2 col-md-offset-1">
+            <div className="col-md-3">
             <input type="checkbox" defaultChecked name="music" value="music" ref="music"/> Concerts
             </div>
-            <div className="col-md-2">
+            <div className="col-md-3">
             <input type="checkbox" name="singles" value="singles_social" ref="singles"/> Nightlife
             </div>
-            <div className="col-md-2">
+            <div className="col-md-3">
             <input type="checkbox" name="performing_arts" value="performing_arts" ref="performing"/> Performing Arts
             </div>
           </form>

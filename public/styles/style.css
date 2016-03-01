@@ -32,11 +32,36 @@ h5 {
   margin: 5px 10% 20px 10%;
 }
 
+#where, #when {
+  background-color: #222222;
+}
+
+#where {
+  width: 300px;
+}
+
 .submitbutton {
   margin-bottom: -1em;
   margin-top: 1em;
 }
 
+.dayButton {
+  background-color: #222222;
+}
+
+.topSearch .dayButton {
+  display: inline;
+}
+
+.topSearch .daySelector {
+  display: inline !important;
+
+}
+
+.topSearch {
+  width: 100%;
+  display: inline-block;
+}
 
 #banner-container {
   height: 100%;
@@ -93,7 +118,7 @@ article {
 
 .eventList {
   color: #00fde2;
-  height: 800px;
+  height: 700px;
   overflow: scroll;
 }
 
@@ -111,6 +136,7 @@ article {
 }
 
 #map {
-  height: 800px;
+  height: 700px;
   margin: 15px 0 0 0;
+  margin-top: -50px;
 }
