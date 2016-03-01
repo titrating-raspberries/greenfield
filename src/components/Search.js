@@ -1,10 +1,14 @@
-import React from 'react';
 
-class Search extends React.Component {
+/* eslint-disable react/jsx-no-bind */
+import React, { Component } from 'react';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+
+class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      date: moment(),
     };
   }
 
@@ -22,28 +26,49 @@ class Search extends React.Component {
     this.props.getQuery(this.refs.city.value, this.refs.start.value, this.refs.end.value, catStr);
   }
 
+  changeDate(change) {
+    let newDate;
+    if (change === 1) {
+      newDate = moment(this.state.date).add(1, 'day');
+    } else if (change === -1) {
+      newDate = moment(this.state.date).subtract(1, 'day');
+    } else {
+      newDate = change;
+    }
+    this.setState({
+      date: newDate,
+    }, this.updateEvents);
+  }
+
+  updateEvents() {
+    const cats = [];
+    const testChecks = (cat) => {
+      if (cat.checked) {
+        cats.push(cat.value);
+      }
+    };
+    testChecks(this.refs.music);
+    testChecks(this.refs.singles);
+    testChecks(this.refs.performing);
+    const catStr = cats.join(',');
+    const eventfulDate = this.state.date.format('YYYYMMDD00-YYYYMMDD00');
+    this.props.loadEvents(this.refs.where.value, eventfulDate, catStr);
+  }
+
   /*eslint-disable */
   render() {
     return (
       <div className="search">
-        <div className="form-group row">
-          <div className="col-md-3">
-            <label htmlFor="city">Enter a city or zipcode:</label>
-            <input type="text" id="locationField" className="form-control" ref="city"/>
-          </div>
-          <div className="col-md-3">
-            <label htmlFor="start">Enter start date</label>
-            <input type="date" className="form-control" ref="start" />
-          </div>
-          <div className="col-md-3">
-            <label htmlFor="end">Enter end date (optional)</label>
-            <input type="date" className="form-control" ref="end" />
-          </div>
-          <div className="col-md-1">
-          <button type="submit" className="btn btn-info submitbutton"
-            onClick={this.getInput.bind(this)}> Start Search
-          </button>
-          </div>
+        <form id="where" onSubmit={() => this.updateEvents()}>
+          <input type="text" ref="where" />
+        </form>
+        <div id="when">
+          <button onClick={() => this.changeDate(-1)}>&#9664;</button>
+          <DatePicker
+            selected={this.state.date}
+            onChange={newDate => this.changeDate(newDate)}
+          />
+          <button onClick={() => this.changeDate(1)}>&#9654;</button>
         </div>
         <div className="form-group row radio">
           <form action="">
@@ -65,7 +90,7 @@ class Search extends React.Component {
 }
 
 Search.propTypes = {
-  getQuery: React.PropTypes.function,
+  loadEvents: React.PropTypes.function,
 };
 
 export default Search;
