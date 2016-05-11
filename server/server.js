@@ -1,13 +1,13 @@
-var express = require('express');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var eventController = require('./events/eventController.js');
-var morgan = require('morgan');
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const eventController = require('./events/eventController.js');
+const morgan = require('morgan');
 
-var app = express();
+const app = express();
 
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect('mongodb://localhost/jamboree');
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../public/'));

@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // Storing each event document as a date and location, with an array containing events
-var EventSchema = new mongoose.Schema({
+const EventSchema = new mongoose.Schema({
   dateAndPlace: {
     type: String,
     required: true,
